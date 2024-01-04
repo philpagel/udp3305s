@@ -1,9 +1,9 @@
 # rec2csv
 
-Convert `*.rec` files created by a UNI-T UDP3305s or UPD3305S-E lab power supply to
+Convert `*.rec` files created by a UNI-T UDP3305S or UPD3305S-E lab power supply to
 CSV format.
 
-These lab powre supplies have an undocumented `RECORDER` functionality that
+These lab power supplies have an undocumented `RECORDER` functionality that
 allows logging readout data to a file. Unfortunately, the file format is binary
 and undocumented, so a little reverse engineering was required to make use of
 these filed.
@@ -15,7 +15,7 @@ the only argument.  The data is written to STDOUT.
 
     ./rec2csv foo.REC
 
-To redirect it to a file use shell redirection:
+To save the output to a file use shell redirection:
 
     ./rec2csv foo.REC > foo.csv
 
@@ -26,4 +26,15 @@ If you are not on LINUX, you may need to call the python interpreter explicitly:
 
 # *.REC format
 
+I have written a little [blog
+post](https://techbotch.org/blog/udp3305s-recordings/index.html#udp3305s-recordings)
+on the reverse engineering process (only in German right now).
+
+The bottom line is this:
+
+| Address | length  | Meaning                                                     |
+|---------|---------|-------------------------------------------------------------|
+| 0x00    | 58 byte | Header "This is a REC file"                                 |
+| 0x40    | 4 byte  | Logging period [s]                                          |
+| 0x50    |         | n recoords of 44 byte each                                  |
 

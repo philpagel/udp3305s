@@ -13,7 +13,7 @@ def main():
         logperiod = int.from_bytes(header[0x40:0x44], byteorder='little')
         
         recno = 0
-        print("s,V.1,A.1,V.2,A.2,V.3,A.3,V.ser,A.ser,V.par,A.par")
+        print("t,voltage.1,current.1,voltage.2,current.2,voltage.3,current.3,voltage.ser,current.ser,voltage.par,current.par")
         while(True):
             rec = infile.read(44)
             
