@@ -16,7 +16,6 @@ def main():
         print("t,voltage.1,current.1,voltage.2,current.2,voltage.3,current.3,voltage.ser,current.ser,voltage.par,current.par")
         while(True):
             rec = infile.read(44)
-            
             if len(rec) == 0:
                 break
             elif len(rec) != 44:
@@ -27,6 +26,7 @@ def main():
                 num = rec[i*4:i*4+4]
                 ret.append( int.from_bytes(num, byteorder='little') / 10000 )
             if debug:
+                # add the last 4 bytes in hex and binary for further reversing
                 ret.append("".join([f"{i:02x}" for i in rec[-4:]]))
                 ret.append(" ".join([f"{i:08b}" for i in rec[-4:]]))
             print(",".join([str(x) for x in ret])) 

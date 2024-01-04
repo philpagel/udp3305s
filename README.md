@@ -6,7 +6,7 @@ CSV format.
 These lab power supplies have an undocumented `RECORDER` functionality that
 allows logging readout data to a file. Unfortunately, the file format is binary
 and undocumented, so a little reverse engineering was required to make use of
-these filed.
+these files.
 
 # Usage
 
