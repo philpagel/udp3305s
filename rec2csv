@@ -6,7 +6,7 @@ and return the content in csv format
 import sys
 
 def main():
-    debug = 1
+    debug = 0
 
     with open(sys.argv[1], "rb") as infile:
         header = infile.read(80)

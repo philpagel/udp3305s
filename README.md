@@ -34,7 +34,28 @@ The bottom line is this:
 
 | Address | length  | Meaning                                                     |
 |---------|---------|-------------------------------------------------------------|
-| 0x00    | 58 byte | Header "This is a REC file"                                 |
-| 0x40    | 4 byte  | Logging period [s]                                          |
-| 0x50    |         | n recoords of 44 byte each                                  |
+| 0x00    | 2       | 0x1006 magic number?                                        |
+| 0x02    | 58      | Header "This is a RECORD file." plus zero padding and EOR   |
+| 0x3c    | 4       | 0xffffffff                                                  |
+| 0x40    | 4       | Logging period [s]; little-endian integer                   |
+| 0x44    | 12      | unknown (all 0xff)                                          |
+| 0x50    | n*44    | n records of 44 byte each                                   |
+
+Each record has exactly 44 Bytes:
+
+| Address | length  | Meaning                                                     |
+|---------|---------|-------------------------------------------------------------|
+| 00      | 4       | Channel 1 readout voltage                                   |
+| 04      | 4       | Channel 1 readout current                                   |
+| 08      | 4       | Channel 2 readout voltage                                   |
+| 12      | 4       | Channel 2 readout current                                   |
+| 16      | 4       | Channel 3 readout voltage                                   |
+| 20      | 4       | Channel 3 readout current                                   |
+| 24      | 4       | Serial setup readout voltage                                |
+| 28      | 4       | Serial setup readout current                                |
+| 32      | 4       | Parallel setup readout voltage                              |
+| 36      | 4       | Parallel setup readout current                              |
+| 40      | 4       | Checksum? Flags? Seems to always start with 0x1812          |
+
+All of the data above is comprised of integers in little-endian format.
 
