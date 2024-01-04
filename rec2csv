@@ -1,0 +1,40 @@
+#! /bin/env python3
+"""
+Read a *.REC file created by a UNI-T UDP3305S power supply
+and return the content in csv format
+"""
+import sys
+
+def main():
+    debug = 1
+
+    with open(sys.argv[1], "rb") as infile:
+        header = infile.read(80)
+        logperiod = int.from_bytes(header[0x40:0x44], byteorder='little')
+        
+        recno = 0
+        print("s,V.1,A.1,V.2,A.2,V.3,A.3,V.ser,A.ser,V.par,A.par")
+        while(True):
+            rec = infile.read(44)
+            
+            if len(rec) == 0:
+                break
+            elif len(rec) != 44:
+                stop("incomplete record.")
+
+            ret = [recno*logperiod]
+            for i in range(5*2):
+                num = rec[i*4:i*4+4]
+                ret.append( int.from_bytes(num, byteorder='little') / 10000 )
+            if debug:
+                ret.append("".join([f"{i:02x}" for i in rec[-4:]]))
+                ret.append(" ".join([f"{i:08b}" for i in rec[-4:]]))
+            print(",".join([str(x) for x in ret])) 
+
+            recno += 1
+
+if __name__ == "__main__":
+    try: 
+        main()
+    except KeyboardInterrupt:
+        pass
