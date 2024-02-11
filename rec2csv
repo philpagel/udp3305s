@@ -3,7 +3,8 @@
 Read a *.REC file created by a UNI-T UDP3305S power supply
 and return the content in csv format
 """
-import sys
+
+import sys, binascii
 
 def main():
     debug = 0
@@ -26,6 +27,9 @@ def main():
                 num = rec[i*4:i*4+4]
                 ret.append( int.from_bytes(num, byteorder='little') / 10000 )
             if debug:
+                # Add CRC
+                ret.append(hex(binascii.crc32(rec[:-2])))
+                ret.append(hex(sum(rec[:-2])))
                 # add the last 4 bytes in hex and binary for further reversing
                 ret.append("".join([f"{i:02x}" for i in rec[-4:]]))
                 ret.append(" ".join([f"{i:08b}" for i in rec[-4:]]))
