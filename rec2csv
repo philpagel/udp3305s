@@ -7,22 +7,30 @@ and return the content in csv format
 import sys, binascii
 
 def main():
-    debug = 0
+    debug = 0   # set to 1 for further reverse engineering
 
     with open(sys.argv[1], "rb") as infile:
-        header = infile.read(80)
-        logperiod = int.from_bytes(header[0x40:0x44], byteorder='little')
+        # read stuff from the file header
+        magic = int.from_bytes(infile.read(2))
+        if magic != 0x1006:
+            sys.exit("Magic number mismatch. Are you sure this is a *.REC file?")
+        fileID = infile.read(58)
+        infile.read(4) # skip over unknown data
+        logperiod = int.from_bytes(infile.read(4), byteorder='little')
+        infile.read(12) # skip over unknown data
         
-        recno = 0
+        recordnumber = 0
         print("t,voltage.1,current.1,voltage.2,current.2,voltage.3,current.3,voltage.ser,current.ser,voltage.par,current.par")
+        # read all data records
         while(True):
             rec = infile.read(44)
             if len(rec) == 0:
                 break
             elif len(rec) != 44:
-                stop("incomplete record.")
+                sys.exit("incomplete record.")
 
-            ret = [recno*logperiod]
+            ret = [recordnumber*logperiod]
+            # read channel readout data
             for i in range(5*2):
                 num = rec[i*4:i*4+4]
                 ret.append( int.from_bytes(num, byteorder='little') / 10000 )
@@ -35,7 +43,7 @@ def main():
                 ret.append(" ".join([f"{i:08b}" for i in rec[-4:]]))
             print(",".join([str(x) for x in ret])) 
 
-            recno += 1
+            recordnumber += 1
 
 if __name__ == "__main__":
     try: 

@@ -60,13 +60,13 @@ Each record has exactly 44 Bytes:
 
 All readout values are 32 bit integers stored in
 [little-endian](https://en.wikipedia.org/wiki/Endianness) format. These
-integers represent 100 µV and 100 µA, respectively. I.e. a readout voltage of
-5.00 Volts is stored as `50000`. Therefore, the program divides them by 10000
-to get Volts/Ampere.
+integers represent multiples of 100 µV and 100 µA, respectively. I.e. a readout
+voltage of 5.00 Volts is stored as `50000`. Therefore, the program divides them
+by 10000 to get Volts/Ampere.
 
 
 # Contributing
 
-If you find an error or have figured out a piece of data that I have missed, please 
-open an issue and let me know.
-
+If you find an error or have figured out a piece of data that I have missed,
+please open an issue and let me know. Please don't submit pull-requests before
+discussing your issue.
