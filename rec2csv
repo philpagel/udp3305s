@@ -7,8 +7,6 @@ and return the content in csv format
 import sys, binascii
 
 def main():
-    debug = 0   # set to 1 for further reverse engineering
-
     with open(sys.argv[1], "rb") as infile:
         # read stuff from the file header
         magic = int.from_bytes(infile.read(2))
@@ -34,13 +32,6 @@ def main():
             for i in range(5*2):
                 num = rec[i*4:i*4+4]
                 ret.append( int.from_bytes(num, byteorder='little') / 10000 )
-            if debug:
-                # Add CRC
-                ret.append(hex(binascii.crc32(rec[:-2])))
-                ret.append(hex(sum(rec[:-2])))
-                # add the last 4 bytes in hex and binary for further reversing
-                ret.append("".join([f"{i:02x}" for i in rec[-4:]]))
-                ret.append(" ".join([f"{i:08b}" for i in rec[-4:]]))
             print(",".join([str(x) for x in ret])) 
 
             recordnumber += 1

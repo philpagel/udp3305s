@@ -1,4 +1,5 @@
-# rec2csv
+
+# UDP3305s tool: rec2csv
 
 Convert `*.rec` files created by a UNI-T UDP3305S or UPD3305S-E lab power supply to
 CSV format.
@@ -58,11 +59,10 @@ Each record has exactly 44 Bytes:
 | 40      | 4 bytes | Checksum? Flags? Seems to always start with 0x1812          |
 
 
-All readout values are 32 bit integers stored in
-[little-endian](https://en.wikipedia.org/wiki/Endianness) format. These
-integers represent multiples of 100 µV and 100 µA, respectively. I.e. a readout
-voltage of 5.00 Volts is stored as `50000`. Therefore, the program divides them
-by 10000 to get Volts/Ampere.
+All readout values are 32 bit integers stored in *little endian* format.
+These integers represent multiples of 100 µV and 100 µA, respectively. I.e. a
+readout voltage of 5.00 Volts is stored as `50000`. Therefore, the program
+divides them by 10000 to get Volts/Ampere.
 
 
 # Contributing
