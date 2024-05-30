@@ -1,4 +1,4 @@
-# Tools for the UDP3305S / UDP3305S-E lab power supply
+# Tools for UDP3305S / UDP3305S-E lab power supplies
 
 Currently, there are two items in this repository:
 
@@ -34,12 +34,13 @@ If you are not on LINUX, you may need to call the python interpreter explicitly:
 # TestController config file
 
 The file under `testcontroller/` is a configuration file for the popular
-[TestController](https://lygte-info.dk/project/TestControllerIntro%20UK.html)I
-will submit it to the TestController Project.
+[TestController](https://lygte-info.dk/project/TestControllerIntro%20UK.html)
+software. It is currently work in progress. Once it is stable and provides all
+essentail functionality, I will submit it to the TestController Project.
 
 # Contributing
 
-If you find an error or have figured out a piece of data that I have missed,
-please open an issue and let me know. Please don't submit pull-requests before
-discussing your issue.
+If you find an error, miss a feature or have figured out a piece of data that I
+have missed, please open an issue and let me know. Please don't submit
+pull-requests before discussing your issue.
 

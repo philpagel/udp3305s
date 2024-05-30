@@ -13,45 +13,70 @@
 #handle UDP3305S-E
 
 #meta
-#idString Uni-Trend,UDP3305S
-#name UNI-T UDP3305S
-#handle UDP3305S
+#idString Uni-Trend UDP3305
+#name UNI-T UDP3305
+#handle UDP3305
 #port 5025 LXI com
+
 
 ; ************************************************************************
 #notes
 Autodetection does not work for LAN connection. Please enter the IP address manually
-Values for Ser and Par can be obtained even when the device is not in Serial or
-Parallel mode.
 
 #initCmd :SYST:LOCK ON
-
 #finalCmd :SYST:LOCK OFF
-
-#value Voltage_Ch1 V D3
-#value Current_Ch1 A D3
-#value Power_Ch1 W D3
-#value VoltageSet_Ch1 V D3
-#value CurrentSet_Ch1 A D3
-#value Voltage_Ch2 V D3
-#value Current_Ch2 A D3
-#value Power_Ch2 W D3
-#value VoltageSet_Ch2 V D3
-#value CurrentSet_Ch2 A D3
-#value Voltage_Ch3 V D3
-#value Current_Ch3 A D3
-#value Power_Ch3 W D3
-#value VoltageSet_Ch3 V D3
-#value CurrentSet_Ch3 A D3
-
-#askValues MEAS:VOLT? CH1;MEAS:CURR? CH1;MEAS:POWE? CH1;SOUR1:VOLT?;SOUR1:CURR?;MEAS:VOLT? CH2;MEAS:CURR? CH2;MEAS:POWE? CH2;SOUR2:VOLT?;SOUR2:CURR?;MEAS:VOLT? CH3;MEAS:CURR? CH3;MEAS:POWE? CH3;SOUR3:VOLT?;SOUR3:CURR?
-
+#prepareSample 
 #askMode SOUR:MODE?
+#askValues MEAS:VOLT? CH1;MEAS:CURR? CH1;MEAS:POWE? CH1;SOUR1:VOLT?;SOUR1:CURR?; MEAS:VOLT? CH2;MEAS:CURR? CH2;MEAS:POWE? CH2;SOUR2:VOLT?;SOUR2:CURR?; MEAS:VOLT? CH3;MEAS:CURR? CH3;MEAS:POWE? CH3;SOUR3:VOLT?;SOUR3:CURR?; MEAS:VOLT? SER;MEAS:CURR? SER;MEAS:POWE? SER;SOUR5:VOLT?;SOUR5:CURR?; MEAS:VOLT? PARA;MEAS:CURR? PARA;MEAS:POWE? PARA;SOUR6:VOLT?;SOUR6:CURR?
+#outputOff OUTPUT:STATE ALL,OFF
+#modeChangeDelay 3
 
-; *************** Mode Popup *****************
-#cmdModeLayout 1 3
-#cmdMode Normal NORMAL SOUR:MODE NORM
-#cmdMode Serial SER SOUR:MODE SER
-#cmdMode Parallel PARA SOUR:MODE PARA
+#value CH1_Voltage V D3
+#value CH1_Current A D3
+#value CH1_Power W D3
+#value CH1_VoltageSet V D3
+#value CH1_CurrentSet A D3
+#value CH2_Voltage V D3
+#value CH2_Current A D3
+#value CH2_Power W D3
+#value CH2_VoltageSet V D3
+#value CH2_CurrentSet A D3
+#value CH3_Voltage V D3
+#value CH3_Current A D3
+#value CH3_Power W D3
+#value CH3_VoltageSet V D3
+#value CH3_CurrentSet A D3
+#value SER_Voltage V D3
+#value SER_Current A D3
+#value SER_Power W D3
+#value SER_VoltageSet V D3
+#value SER_CurrentSet A D3
+#value PARA_Voltage V D3
+#value PARA_Current A D3
+#value PARA_Power W D3
+#value PARA_VoltageSet V D3
+#value PARA_CurrentSet A D3
 
 
+; ********** Setup Menu  ********  
+
+#interfaceType PS PS:2 PS:3
+
+#interface setVoltage APPLY (channel),(value)V
+#interface setCurrent APPLY (channel),(value)A
+#interface setOn OUTPUT (channel),on
+#interface getVoltage MEASURE:VOLT? (channel)
+:readFormat: f
+#interface getCurrent MEASURE:CURRENT? (channel)
+:readFormat: f
+#interface getOn OUTPUT:STATE? (channel)
+#interface readVoltage 0
+#interface readCurrent 1
+
+
+#cmdSetup number 
+:read: MEAS:VOLT? CH1
+:write: :APPL CH1,#
+;#:update: CH2_Voltage
+;#:updatemodechange:
+;#V  0 CH1_MaxVoltage
