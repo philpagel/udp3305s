@@ -70,3 +70,9 @@ divides them by 10000 to get Volts/Ampere.
 If you find an error or have figured out a piece of data that I have missed,
 please open an issue and let me know. Please don't submit pull-requests before
 discussing your issue.
+
+# TestController config file
+
+The file under `testcontroller/` is a configuration file for the popular
+[TestController](https://lygte-info.dk/project/TestControllerIntro%20UK.html)I
+will submit it to the TestController Project.

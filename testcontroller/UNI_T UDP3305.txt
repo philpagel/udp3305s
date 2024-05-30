@@ -1,0 +1,27 @@
+; Configuration for UNI-T UDP3305S and UDP3305S-E lab power suppies
+#notes
+Autodetection does not work for LAN connection. Please enter the IP address manually
+
+#idString Uni-Trend,UDP3305S
+#name UNI-T UDP3305S
+#handle UDP3305S
+#port 5025 LXI com
+
+#value Voltage_Ch1 V D3
+#value Current_Ch1 A D3
+#value Power_Ch1 W D3
+#value VoltageSet_Ch1 V D3
+#value CurrentSet_Ch1 A D3
+#value Voltage_Ch2 V D3
+#value Current_Ch2 A D3
+#value Power_Ch2 W D3
+#value VoltageSet_Ch2 V D3
+#value CurrentSet_Ch2 A D3
+#value Voltage_Ch3 V D3
+#value Current_Ch3 A D3
+#value Power_Ch3 W D3
+#value VoltageSet_Ch3 V D3
+#value CurrentSet_Ch3 A D3
+
+#askValues :MEASURE:VOLTAGE? CH1;:MEASURE:CURRENT? CH1;:MEASURE:POWER? CH1;:SOUR1:VOLT?;:SOUR1:CURRENT?;:MEASURE:VOLTAGE? CH2;:MEASURE:CURRENT? CH2;:MEASURE:POWER? CH2;:SOUR2:VOLT?;:SOUR2:CURRENT?;:MEASURE:VOLTAGE? CH3;:MEASURE:CURRENT? CH3;:MEASURE:POWER? CH3;:SOUR3:VOLT?;:SOUR3:CURRENT?
+
