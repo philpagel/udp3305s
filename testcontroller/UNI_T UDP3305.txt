@@ -24,6 +24,10 @@ Autodetection does not work for LAN connection. Please enter the IP address manu
 Values for Ser and Par can be obtained even when the device is not in Serial or
 Parallel mode.
 
+#initCmd :SYST:LOCK ON
+
+#finalCmd :SYST:LOCK OFF
+
 #value Voltage_Ch1 V D3
 #value Current_Ch1 A D3
 #value Power_Ch1 W D3
@@ -41,4 +45,13 @@ Parallel mode.
 #value CurrentSet_Ch3 A D3
 
 #askValues MEAS:VOLT? CH1;MEAS:CURR? CH1;MEAS:POWE? CH1;SOUR1:VOLT?;SOUR1:CURR?;MEAS:VOLT? CH2;MEAS:CURR? CH2;MEAS:POWE? CH2;SOUR2:VOLT?;SOUR2:CURR?;MEAS:VOLT? CH3;MEAS:CURR? CH3;MEAS:POWE? CH3;SOUR3:VOLT?;SOUR3:CURR?
+
+#askMode SOUR:MODE?
+
+; *************** Mode Popup *****************
+#cmdModeLayout 1 3
+#cmdMode Normal NORMAL SOUR:MODE NORM
+#cmdMode Serial SER SOUR:MODE SER
+#cmdMode Parallel PARA SOUR:MODE PARA
+
 
