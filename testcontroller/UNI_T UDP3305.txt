@@ -1,11 +1,28 @@
-; Configuration for UNI-T UDP3305S and UDP3305S-E lab power suppies
-#notes
-Autodetection does not work for LAN connection. Please enter the IP address manually
+; Configuration for UNI-T UDP3305S and UDP3305S-E lab power supplies
+; supports all 3 channels as well as serial and parallel modes
+; currently work in progress – not feature complete
 
+#metadef
+#idString Uni-Trend,UDP3305S
+#name Uni-T UDP3305S
+#handle UDP3305S
+
+#metadef
+#idString Uni-Trend,UDP3305S-E
+#name Uni-T UDP3305S-E
+#handle UDP3305S-E
+
+#meta
 #idString Uni-Trend,UDP3305S
 #name UNI-T UDP3305S
 #handle UDP3305S
 #port 5025 LXI com
+
+; ************************************************************************
+#notes
+Autodetection does not work for LAN connection. Please enter the IP address manually
+Values for Ser and Par can be obtained even when the device is not in Serial or
+Parallel mode.
 
 #value Voltage_Ch1 V D3
 #value Current_Ch1 A D3
@@ -23,5 +40,5 @@ Autodetection does not work for LAN connection. Please enter the IP address manu
 #value VoltageSet_Ch3 V D3
 #value CurrentSet_Ch3 A D3
 
-#askValues :MEASURE:VOLTAGE? CH1;:MEASURE:CURRENT? CH1;:MEASURE:POWER? CH1;:SOUR1:VOLT?;:SOUR1:CURRENT?;:MEASURE:VOLTAGE? CH2;:MEASURE:CURRENT? CH2;:MEASURE:POWER? CH2;:SOUR2:VOLT?;:SOUR2:CURRENT?;:MEASURE:VOLTAGE? CH3;:MEASURE:CURRENT? CH3;:MEASURE:POWER? CH3;:SOUR3:VOLT?;:SOUR3:CURRENT?
+#askValues MEAS:VOLT? CH1;MEAS:CURR? CH1;MEAS:POWE? CH1;SOUR1:VOLT?;SOUR1:CURR?;MEAS:VOLT? CH2;MEAS:CURR? CH2;MEAS:POWE? CH2;SOUR2:VOLT?;SOUR2:CURR?;MEAS:VOLT? CH3;MEAS:CURR? CH3;MEAS:POWE? CH3;SOUR3:VOLT?;SOUR3:CURR?
 
