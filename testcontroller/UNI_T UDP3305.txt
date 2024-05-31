@@ -58,25 +58,226 @@ Autodetection does not work for LAN connection. Please enter the IP address manu
 #value PARA_CurrentSet A D3
 
 
-; ********** Setup Menu  ********  
+; ********** Interface definitions  ********  
 
-#interfaceType PS PS:2 PS:3
+;#interfaceType PS PS:2 PS:3
+;
+;#interface setVoltage APPLY (channel),(value)V
+;#interface setCurrent APPLY (channel),(value)A
+;#interface setOn OUTPUT (channel),(value)
+;#interface getVoltage MEASURE:VOLT? (channel)
+;:readFormat: f
+;#interface getCurrent MEASURE:CURRENT? (channel)
+;:readFormat: f
+;#interface getOn OUTPUT:STATE? (channel)
+;#interface readVoltage 0
+;#interface readCurrent 1
 
-#interface setVoltage APPLY (channel),(value)V
-#interface setCurrent APPLY (channel),(value)A
-#interface setOn OUTPUT (channel),on
-#interface getVoltage MEASURE:VOLT? (channel)
-:readFormat: f
-#interface getCurrent MEASURE:CURRENT? (channel)
-:readFormat: f
-#interface getOn OUTPUT:STATE? (channel)
-#interface readVoltage 0
-#interface readCurrent 1
+
+; *******************************
+; Setup Menu
+; *******************************
 
 
-#cmdSetup number 
-:read: MEAS:VOLT? CH1
-:write: :APPL CH1,#
-;#:update: CH2_Voltage
-;#:updatemodechange:
-;#V  0 CH1_MaxVoltage
+; ********** Output ********  
+
+#cmdSetup checkbox Output_Ch1 Output
+:read: OUTPUT:STATE? CH1
+:write: OUTPUT:STATE CH1,#
+:string:
+:bgcolor: (51,204,255)
+:updatealloff:
+On OFF ON
+
+#cmdSetup checkbox Output_Ch2 Output
+:read: OUTPUT:STATE? CH2
+:write: OUTPUT:STATE CH2,#
+:string:
+:bgcolor: (255,255,102)
+:updatealloff:
+On OFF ON
+
+#cmdSetup checkbox Output_Ch3 Output
+:read: OUTPUT:STATE? CH3
+:write: OUTPUT:STATE CH3,#
+:string:
+:bgcolor: (204,153,255)
+:updatealloff:
+On OFF ON
+
+#cmdSetup checkbox Output_Serial Output
+:read: OUTPUT:STATE? SER
+:write: OUTPUT:STATE SER,#
+:string:
+:bgcolor: (102,255,102)
+:updatealloff:
+On OFF ON
+
+#cmdSetup checkbox Output_Parallel Output
+:read: OUTPUT:STATE? PARA
+:write: OUTPUT:STATE PARA,#
+:string:
+:bgcolor: (102,255,102)
+:updatealloff:
+On OFF ON
+
+#cmdSetup radio Output_Mode 
+:read: SOURce:Mode?;
+:readFormat: 
+:write: SOURCE:Mode # 
+:string:
+:updatealloff:
+:updatedelayed: 0.5
+:update: Output_Mode,Output_Ch1,Output_Ch2,Output_Ch3,Output_Serial,Output_Parallel
+Normal NORMAL
+Serial SER
+Parallel PARA
+
+
+; ********** Channel 1 ********  
+
+#cmdSetup number Volt Ch_1
+:read: APPLy? CH1,VOLT
+:readmath: getElement(value,1, ",")
+:write: APPLY Ch1,#V
+V 0 33.0
+
+#cmdSetup number Current Ch_1
+:read: APPLy? CH1,CURRENT
+:readmath: getElement(value,1, ",")
+:write: APPLY Ch1,#A
+A 0 5.2
+
+#cmdSetup number OVP Ch_1
+:read: OUTPUT:OVP:VALUE?
+:write: OUTPUT:OVP:VALUE CH1,#
+:tip: Over voltage protection
+V 0 33.0
+
+#cmdSetup number OCP Ch_1
+:read: OUTPUT:OCP:VALUE? CH1
+:write: OUTPUT:OCP:VALUE CH1,#
+:tip: Over current protection
+A 0 5.2
+
+; ********** Channel 2 ********  
+
+#cmdSetup number Volt Ch_2
+:read: APPLy? CH2,VOLT
+:readmath: getElement(value,1, ",")
+:write: APPLY Ch2,#V
+V 0 33.0
+
+#cmdSetup number Current Ch_2
+:read: APPLy? CH2,CURRENT
+:readmath: getElement(value,1, ",")
+:write: APPLY Ch2,#A
+A 0 5.2
+
+#cmdSetup number OVP Ch_2
+:read: OUTPUT:OVP:VALUE? CH2
+:write: OUTPUT:OVP:VALUE CH2,#
+:tip: Over voltage protection
+V 0 33.0
+
+#cmdSetup number OCP Ch_2
+:read: OUTPUT:OCP:VALUE? CH2
+:write: OUTPUT:OCP:VALUE CH2,#
+:tip: Over current protection
+A 0 5.2
+
+; ********** Channel 3 ********  
+
+#cmdSetup number Volt Ch_3
+:read: APPLy? CH3,VOLT
+:readmath: getElement(value,1, ",")
+:write: APPLY Ch3,#V
+V 0 6.2
+
+#cmdSetup number Current Ch_3
+:read: APPLy? CH3,CURRENT
+:readmath: getElement(value,1, ",")
+:write: APPLY Ch3,#A
+A 0 3.2
+
+#cmdSetup number OVP Ch_3
+:read: OUTPUT:OVP:VALUE? CH3
+:write: OUTPUT:OVP:VALUE CH3,#
+:tip: Over voltage protection
+V 0 6.2
+
+#cmdSetup number OCP Ch_3
+:read: OUTPUT:OCP:VALUE? CH3
+:write:iOUTPUT:OCP:VALUE CH3,#
+:tip: Over current protection
+A 0 3.2
+
+; ********** Channel SER ********  
+
+#cmdSetup number Volt SER
+:read: APPLy? SER,VOLT
+:readmath: getElement(value,1, ",")
+:write: APPLY SER,#V
+V 0 66.0
+
+#cmdSetup number Current SER
+:read: APPLy? SER,CURRENT
+:readmath: getElement(value,1, ",")
+:write: APPLY SER,#A
+A 0 5.2
+
+#cmdSetup number OVP SER
+:read: OUTPUT:OVP:VALUE? SER
+:write: OUTPUT:OVP:VALUE SER,#
+:tip: Over voltage protection
+V 0 66.0
+
+#cmdSetup number OCP SER
+:read: OUTPUT:OCP:VALUE? SER
+:write:iOUTPUT:OCP:VALUE SER,#
+:tip: Over current protection
+A 0 5.2
+
+; ********** Channel PAR ********  
+
+#cmdSetup number Volt PAR
+:read: APPLy? PAR,VOLT
+:readmath: getElement(value,1, ",")
+:write: APPLY PAR,#V
+V 0 33.0
+
+#cmdSetup number Current PAR
+:read: APPLy? PAR,CURRENT
+:readmath: getElement(value,1, ",")
+:write: APPLY PAR,#A
+A 0 10.4
+
+#cmdSetup number OVP PAR
+:read: OUTPUT:OVP:VALUE? PAR
+:write: OUTPUT:OVP:VALUE PAR,#
+:tip: Over voltage protection
+V 0 33.0
+
+#cmdSetup number OCP PAR
+:read: OUTPUT:OCP:VALUE? PAR
+:write:iOUTPUT:OCP:VALUE PAR,#
+:tip: Over current protection
+A 0 10.4
+
+#cmdSetup color - Ch_1
+(51,204,255)
+:bgcolor: (51,204,255)
+#cmdSetup color - Ch_2
+(255,255,102)
+:bgcolor: (255,255,102)
+#cmdSetup color - Ch_3
+(204,153,255)
+:bgcolor: (204,153,255)
+#cmdSetup color - SER
+(102,255,102)
+:bgcolor: (102,255,102)
+#cmdSetup color - PAR
+(102,255,102)
+:bgcolor: (102,255,102)
+
+
