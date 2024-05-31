@@ -271,26 +271,26 @@ A 0 SER_MaxCurrent
 ; ********** Channel PAR ********  
 
 #cmdSetup number Volt PAR
-:read: APPLy? PAR,VOLT
+:read: APPLy? PARA,VOLT
 :readmath: getElement(value,1, ",")
-:write: APPLY PAR,#V
+:write: APPLY PARA,#V
 V 0 PAR_MaxVoltage
 
 #cmdSetup number Current PAR
-:read: APPLy? PAR,CURRENT
+:read: APPLy? PARA,CURRENT
 :readmath: getElement(value,1, ",")
-:write: APPLY PAR,#A
+:write: APPLY PARA,#A
 A 0 PAR_MaxCurrent
 
 #cmdSetup number OVP PAR
-:read: OUTPUT:OVP:VALUE? PAR
-:write: OUTPUT:OVP:VALUE PAR,#
+:read: OUTPUT:OVP:VALUE? PARA
+:write: OUTPUT:OVP:VALUE PARA,#
 :tip: Over voltage protection
 V 0 PAR_MaxVoltage
 
 #cmdSetup number OCP PAR
-:read: OUTPUT:OCP:VALUE? PAR
-:write:iOUTPUT:OCP:VALUE PAR,#
+:read: OUTPUT:OCP:VALUE? PARA
+:write:OUTPUT:OCP:VALUE PARA,#
 :tip: Over current protection
 A 0 PAR_MaxCurrent
 
