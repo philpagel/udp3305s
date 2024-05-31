@@ -6,11 +6,41 @@
 #idString Uni-Trend,UDP3305S
 #name Uni-T UDP3305S
 #handle UDP3305S
+#replaceText CH1_COLOR (51,204,255)
+#replaceText CH2_COLOR (255,255,102)
+#replaceText CH3_COLOR (204,153,255)
+#replaceText SER_COLOR (102,255,102)
+#replaceText PAR_COLOR (102,255,102)
+#replaceText CH1_MaxVoltage 33
+#replaceText CH1_MaxCurrent 5.2
+#replaceText CH2_MaxVoltage 33
+#replaceText CH2_MaxCurrent 5.2
+#replaceText CH3_MaxVoltage 6.2
+#replaceText CH3_MaxCurrent 3.2
+#replaceText SER_MaxVoltage 66
+#replaceText SER_MaxCurrent 5.2
+#replaceText PAR_MaxVoltage 33
+#replaceText PAR_MaxCurrent 10.4
 
 #metadef
 #idString Uni-Trend,UDP3305S-E
 #name Uni-T UDP3305S-E
 #handle UDP3305S-E
+#replaceText CH1_COLOR (51,204,255)
+#replaceText CH2_COLOR (255,255,102)
+#replaceText CH3_COLOR (204,153,255)
+#replaceText SER_COLOR (102,255,102)
+#replaceText PAR_COLOR (102,255,102)
+#replaceText CH1_MaxVoltage 33
+#replaceText CH1_MaxCurrent 5.2
+#replaceText CH2_MaxVoltage 33
+#replaceText CH2_MaxCurrent 5.2
+#replaceText CH3_MaxVoltage 6.2
+#replaceText CH3_MaxCurrent 3.2
+#replaceText SER_MaxVoltage 66
+#replaceText SER_MaxCurrent 5.2
+#replaceText PAR_MaxVoltage 33
+#replaceText PAR_MaxCurrent 10.4
 
 #meta
 #idString Uni-Trend UDP3305
@@ -78,49 +108,6 @@ Autodetection does not work for LAN connection. Please enter the IP address manu
 ; Setup Menu
 ; *******************************
 
-
-; ********** Output ********  
-
-#cmdSetup checkbox Output_Ch1 Output
-:read: OUTPUT:STATE? CH1
-:write: OUTPUT:STATE CH1,#
-:string:
-:bgcolor: (51,204,255)
-:updatealloff:
-On OFF ON
-
-#cmdSetup checkbox Output_Ch2 Output
-:read: OUTPUT:STATE? CH2
-:write: OUTPUT:STATE CH2,#
-:string:
-:bgcolor: (255,255,102)
-:updatealloff:
-On OFF ON
-
-#cmdSetup checkbox Output_Ch3 Output
-:read: OUTPUT:STATE? CH3
-:write: OUTPUT:STATE CH3,#
-:string:
-:bgcolor: (204,153,255)
-:updatealloff:
-On OFF ON
-
-#cmdSetup checkbox Output_Serial Output
-:read: OUTPUT:STATE? SER
-:write: OUTPUT:STATE SER,#
-:string:
-:bgcolor: (102,255,102)
-:updatealloff:
-On OFF ON
-
-#cmdSetup checkbox Output_Parallel Output
-:read: OUTPUT:STATE? PARA
-:write: OUTPUT:STATE PARA,#
-:string:
-:bgcolor: (102,255,102)
-:updatealloff:
-On OFF ON
-
 #cmdSetup radio Output_Mode 
 :read: SOURce:Mode?;
 :readFormat: 
@@ -134,31 +121,74 @@ Serial SER
 Parallel PARA
 
 
+; ********** Output ********  
+
+#cmdSetup checkbox Output_Ch1 Output
+:read: OUTPUT:STATE? CH1
+:write: OUTPUT:STATE CH1,#
+:string:
+:bgcolor: CH1_COLOR
+:updatealloff:
+On OFF ON
+
+#cmdSetup checkbox Output_Ch2 Output
+:read: OUTPUT:STATE? CH2
+:write: OUTPUT:STATE CH2,#
+:string:
+:bgcolor: CH2_COLOR
+:updatealloff:
+On OFF ON
+
+#cmdSetup checkbox Output_Ch3 Output
+:read: OUTPUT:STATE? CH3
+:write: OUTPUT:STATE CH3,#
+:string:
+:bgcolor: CH3_COLOR
+:updatealloff:
+On OFF ON
+
+#cmdSetup checkbox Output_Serial Output
+:read: OUTPUT:STATE? SER
+:write: OUTPUT:STATE SER,#
+:string:
+:bgcolor: SER_COLOR
+:updatealloff:
+On OFF ON
+
+#cmdSetup checkbox Output_Parallel Output
+:read: OUTPUT:STATE? PARA
+:write: OUTPUT:STATE PARA,#
+:string:
+:bgcolor: PAR_COLOR
+:updatealloff:
+On OFF ON
+
+
 ; ********** Channel 1 ********  
 
 #cmdSetup number Volt Ch_1
 :read: APPLy? CH1,VOLT
 :readmath: getElement(value,1, ",")
 :write: APPLY Ch1,#V
-V 0 33.0
+V 0 CH1_MaxVoltage
 
 #cmdSetup number Current Ch_1
 :read: APPLy? CH1,CURRENT
 :readmath: getElement(value,1, ",")
 :write: APPLY Ch1,#A
-A 0 5.2
+A 0 CH1_MaxCurrent
 
 #cmdSetup number OVP Ch_1
 :read: OUTPUT:OVP:VALUE?
 :write: OUTPUT:OVP:VALUE CH1,#
 :tip: Over voltage protection
-V 0 33.0
+V 0 CH1_MaxVoltage
 
 #cmdSetup number OCP Ch_1
 :read: OUTPUT:OCP:VALUE? CH1
 :write: OUTPUT:OCP:VALUE CH1,#
 :tip: Over current protection
-A 0 5.2
+A 0 CH1_MaxCurrent
 
 ; ********** Channel 2 ********  
 
@@ -166,25 +196,25 @@ A 0 5.2
 :read: APPLy? CH2,VOLT
 :readmath: getElement(value,1, ",")
 :write: APPLY Ch2,#V
-V 0 33.0
+V 0 CH2_MaxVoltage
 
 #cmdSetup number Current Ch_2
 :read: APPLy? CH2,CURRENT
 :readmath: getElement(value,1, ",")
 :write: APPLY Ch2,#A
-A 0 5.2
+A 0 CH2_MaxCurrent
 
 #cmdSetup number OVP Ch_2
 :read: OUTPUT:OVP:VALUE? CH2
 :write: OUTPUT:OVP:VALUE CH2,#
 :tip: Over voltage protection
-V 0 33.0
+V 0 CH2_MaxVoltage
 
 #cmdSetup number OCP Ch_2
 :read: OUTPUT:OCP:VALUE? CH2
 :write: OUTPUT:OCP:VALUE CH2,#
 :tip: Over current protection
-A 0 5.2
+A 0 CH2_MaxCurrent
 
 ; ********** Channel 3 ********  
 
@@ -192,25 +222,25 @@ A 0 5.2
 :read: APPLy? CH3,VOLT
 :readmath: getElement(value,1, ",")
 :write: APPLY Ch3,#V
-V 0 6.2
+V 0 CH3_MaxVoltage
 
 #cmdSetup number Current Ch_3
 :read: APPLy? CH3,CURRENT
 :readmath: getElement(value,1, ",")
 :write: APPLY Ch3,#A
-A 0 3.2
+A 0 CH3_MaxCurrent
 
 #cmdSetup number OVP Ch_3
 :read: OUTPUT:OVP:VALUE? CH3
 :write: OUTPUT:OVP:VALUE CH3,#
 :tip: Over voltage protection
-V 0 6.2
+V 0 CH3_MaxVoltage
 
 #cmdSetup number OCP Ch_3
 :read: OUTPUT:OCP:VALUE? CH3
 :write:iOUTPUT:OCP:VALUE CH3,#
 :tip: Over current protection
-A 0 3.2
+A 0 CH3_MaxCurrent
 
 ; ********** Channel SER ********  
 
@@ -218,25 +248,25 @@ A 0 3.2
 :read: APPLy? SER,VOLT
 :readmath: getElement(value,1, ",")
 :write: APPLY SER,#V
-V 0 66.0
+V 0 SER_MaxVoltage
 
 #cmdSetup number Current SER
 :read: APPLy? SER,CURRENT
 :readmath: getElement(value,1, ",")
 :write: APPLY SER,#A
-A 0 5.2
+A 0 SER_MaxCurrent
 
 #cmdSetup number OVP SER
 :read: OUTPUT:OVP:VALUE? SER
 :write: OUTPUT:OVP:VALUE SER,#
 :tip: Over voltage protection
-V 0 66.0
+V 0 SER_MaxVoltage
 
 #cmdSetup number OCP SER
 :read: OUTPUT:OCP:VALUE? SER
 :write:iOUTPUT:OCP:VALUE SER,#
 :tip: Over current protection
-A 0 5.2
+A 0 SER_MaxCurrent
 
 ; ********** Channel PAR ********  
 
@@ -244,40 +274,40 @@ A 0 5.2
 :read: APPLy? PAR,VOLT
 :readmath: getElement(value,1, ",")
 :write: APPLY PAR,#V
-V 0 33.0
+V 0 PAR_MaxVoltage
 
 #cmdSetup number Current PAR
 :read: APPLy? PAR,CURRENT
 :readmath: getElement(value,1, ",")
 :write: APPLY PAR,#A
-A 0 10.4
+A 0 PAR_MaxCurrent
 
 #cmdSetup number OVP PAR
 :read: OUTPUT:OVP:VALUE? PAR
 :write: OUTPUT:OVP:VALUE PAR,#
 :tip: Over voltage protection
-V 0 33.0
+V 0 PAR_MaxVoltage
 
 #cmdSetup number OCP PAR
 :read: OUTPUT:OCP:VALUE? PAR
 :write:iOUTPUT:OCP:VALUE PAR,#
 :tip: Over current protection
-A 0 10.4
+A 0 PAR_MaxCurrent
 
 #cmdSetup color - Ch_1
-(51,204,255)
-:bgcolor: (51,204,255)
+CH1_COLOR
+:bgcolor: CH1_COLOR
 #cmdSetup color - Ch_2
-(255,255,102)
-:bgcolor: (255,255,102)
+CH2_COLOR
+:bgcolor: CH2_COLOR
 #cmdSetup color - Ch_3
-(204,153,255)
-:bgcolor: (204,153,255)
+CH3_COLOR
+:bgcolor: CH3_COLOR
 #cmdSetup color - SER
-(102,255,102)
-:bgcolor: (102,255,102)
+SER_COLOR
+:bgcolor: SER_COLOR
 #cmdSetup color - PAR
-(102,255,102)
-:bgcolor: (102,255,102)
+PAR_COLOR
+:bgcolor: PAR_COLOR
 
 
