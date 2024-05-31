@@ -115,7 +115,7 @@ Autodetection does not work for LAN connection. Please enter the IP address manu
 :string:
 :updatealloff:
 :updatedelayed: 0.5
-:update: Output_Mode,Output_Ch1,Output_Ch2,Output_Ch3,Output_Serial,Output_Parallel
+:update: Output_Mode,Output_Ch1,Output_Ch2,Output_Ch3,Output_Serial,Output_Parallel,ch1_selector,ch2_selector,ch3_selector,ser_selector,par_selector
 Normal NORMAL
 Serial SER
 Parallel PARA
@@ -124,6 +124,7 @@ Parallel PARA
 ; ********** Output ********  
 
 #cmdSetup checkbox Output_Ch1 Output
+:enable: Output_Mode=="NORMAL"
 :read: OUTPUT:STATE? CH1
 :write: OUTPUT:STATE CH1,#
 :string:
@@ -132,6 +133,7 @@ Parallel PARA
 On OFF ON
 
 #cmdSetup checkbox Output_Ch2 Output
+:enable: Output_Mode=="NORMAL"
 :read: OUTPUT:STATE? CH2
 :write: OUTPUT:STATE CH2,#
 :string:
@@ -148,6 +150,7 @@ On OFF ON
 On OFF ON
 
 #cmdSetup checkbox Output_Serial Output
+:enable: Output_Mode=="SER"
 :read: OUTPUT:STATE? SER
 :write: OUTPUT:STATE SER,#
 :string:
@@ -156,6 +159,7 @@ On OFF ON
 On OFF ON
 
 #cmdSetup checkbox Output_Parallel Output
+:enable: Output_Mode=="PARA"
 :read: OUTPUT:STATE? PARA
 :write: OUTPUT:STATE PARA,#
 :string:
@@ -167,24 +171,28 @@ On OFF ON
 ; ********** Channel 1 ********  
 
 #cmdSetup number Volt Ch_1
+;:enable: Output_Mode=="NORMAL"
 :read: APPLy? CH1,VOLT
 :readmath: getElement(value,1, ",")
 :write: APPLY Ch1,#V
 V 0 CH1_MaxVoltage
 
 #cmdSetup number Current Ch_1
+;:enable: Output_Mode=="NORMAL"
 :read: APPLy? CH1,CURRENT
 :readmath: getElement(value,1, ",")
 :write: APPLY Ch1,#A
 A 0 CH1_MaxCurrent
 
 #cmdSetup number OVP Ch_1
+;:enable: Output_Mode=="NORMAL"
 :read: OUTPUT:OVP:VALUE?
 :write: OUTPUT:OVP:VALUE CH1,#
 :tip: Over voltage protection
 V 0 CH1_MaxVoltage
 
 #cmdSetup number OCP Ch_1
+;:enable: Output_Mode=="NORMAL"
 :read: OUTPUT:OCP:VALUE? CH1
 :write: OUTPUT:OCP:VALUE CH1,#
 :tip: Over current protection
@@ -193,24 +201,28 @@ A 0 CH1_MaxCurrent
 ; ********** Channel 2 ********  
 
 #cmdSetup number Volt Ch_2
+;:enable: Output_Mode=="NORMAL"
 :read: APPLy? CH2,VOLT
 :readmath: getElement(value,1, ",")
 :write: APPLY Ch2,#V
 V 0 CH2_MaxVoltage
 
 #cmdSetup number Current Ch_2
+;:enable: Output_Mode=="NORMAL"
 :read: APPLy? CH2,CURRENT
 :readmath: getElement(value,1, ",")
 :write: APPLY Ch2,#A
 A 0 CH2_MaxCurrent
 
 #cmdSetup number OVP Ch_2
+;:enable: Output_Mode=="NORMAL"
 :read: OUTPUT:OVP:VALUE? CH2
 :write: OUTPUT:OVP:VALUE CH2,#
 :tip: Over voltage protection
 V 0 CH2_MaxVoltage
 
 #cmdSetup number OCP Ch_2
+;:enable: Output_Mode=="NORMAL"
 :read: OUTPUT:OCP:VALUE? CH2
 :write: OUTPUT:OCP:VALUE CH2,#
 :tip: Over current protection
@@ -245,24 +257,28 @@ A 0 CH3_MaxCurrent
 ; ********** Channel SER ********  
 
 #cmdSetup number Volt SER
+;:enable: Output_Mode=="SER"
 :read: APPLy? SER,VOLT
 :readmath: getElement(value,1, ",")
 :write: APPLY SER,#V
 V 0 SER_MaxVoltage
 
 #cmdSetup number Current SER
+;:enable: Output_Mode=="SER"
 :read: APPLy? SER,CURRENT
 :readmath: getElement(value,1, ",")
 :write: APPLY SER,#A
 A 0 SER_MaxCurrent
 
 #cmdSetup number OVP SER
+;:enable: Output_Mode=="SER"
 :read: OUTPUT:OVP:VALUE? SER
 :write: OUTPUT:OVP:VALUE SER,#
 :tip: Over voltage protection
 V 0 SER_MaxVoltage
 
 #cmdSetup number OCP SER
+;:enable: Output_Mode=="SER"
 :read: OUTPUT:OCP:VALUE? SER
 :write:iOUTPUT:OCP:VALUE SER,#
 :tip: Over current protection
@@ -271,28 +287,81 @@ A 0 SER_MaxCurrent
 ; ********** Channel PAR ********  
 
 #cmdSetup number Volt PAR
+;:enable: Output_Mode=="PARA"
 :read: APPLy? PARA,VOLT
 :readmath: getElement(value,1, ",")
 :write: APPLY PARA,#V
 V 0 PAR_MaxVoltage
 
 #cmdSetup number Current PAR
+;:enable: Output_Mode=="PARA"
 :read: APPLy? PARA,CURRENT
 :readmath: getElement(value,1, ",")
 :write: APPLY PARA,#A
 A 0 PAR_MaxCurrent
 
 #cmdSetup number OVP PAR
+;:enable: Output_Mode=="PARA"
 :read: OUTPUT:OVP:VALUE? PARA
 :write: OUTPUT:OVP:VALUE PARA,#
 :tip: Over voltage protection
 V 0 PAR_MaxVoltage
 
 #cmdSetup number OCP PAR
+;:enable: Output_Mode=="PARA"
 :read: OUTPUT:OCP:VALUE? PARA
 :write:OUTPUT:OCP:VALUE PARA,#
 :tip: Over current protection
 A 0 PAR_MaxCurrent
+
+; ********** control visibility setup ********  
+;#cmdSetup selector Output_selector Output
+;Output_Mode
+;:updatealloff:
+;:updatedelayed: 0.5
+;NORMAL Output.Output_Ch1 Output.Output_Ch2 Output.Output_Ch3
+;SER Output.SER Output.Output_Ch3
+;PARA Output.Parallel
+
+;; ********** control visibility setup ********  
+;#cmdSetup selector ch1_selector Ch_1
+;Output_Mode
+;:updatealloff:
+;:updatedelayed: 0.5
+;NORMAL Ch_1.
+;SER
+;PARA
+;#cmdSetup selector ch2_selector Ch_2
+;Output_Mode
+;:updatealloff:
+;:updatedelayed: 0.5
+;NORMAL Ch_2.
+;SER
+;PARA
+;#cmdSetup selector ch3_selector Ch_3
+;Output_Mode
+;:updatealloff:
+;:updatedelayed: 0.5
+;NORMAL Ch_3. 
+;SER Ch_3.
+;PARA Ch_3.
+;#cmdSetup selector ser_selector SER
+;Output_Mode
+;:updatealloff:
+;:updatedelayed: 0.5
+;NORMAL
+;SER SER.
+;PARA
+;#cmdSetup selector par_selector PAR
+;Output_Mode
+;:updatealloff:
+;:updatedelayed: 0.5
+;NORMAL
+;SER
+;PARA PAR.
+
+
+; ********** Color setup ********  
 
 #cmdSetup color - Ch_1
 CH1_COLOR
