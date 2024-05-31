@@ -35,14 +35,18 @@ If you are not on LINUX, you may need to call the python interpreter explicitly:
 
 The file under `testcontroller/` is a configuration file for the popular
 [TestController](https://lygte-info.dk/project/TestControllerIntro%20UK.html)
-software. So far, it allows data logging for all three channels as well as in 
-serial or parallel mode. Channel setup works but advanced functions such as recording,
-delayer or list mode is not implemented, yet.
+software. So far, it allows data logging for all three channels as well as in
+serial or parallel mode. Channel setup works but advanced functions such as
+recording, delayer or list mode are not implemented, yet.
 
-Thanks to Wolfram Bahmann for input and testing the config on a UD3305S-E.
+![config output](output-normal.png)
+![config output parallel](output-parallel.png)
+![config channel](channel1.png)
 
-It is currently work in progress. Once it is stable and provides all
+This is currently work in progress. Once it is stable and provides all
 essential functionality, I will submit it to the TestController Project.
+
+Thanks to Wolfram Bahmann for input and testing the config on a UDP3305S-E.
 
 # Contributing
 
