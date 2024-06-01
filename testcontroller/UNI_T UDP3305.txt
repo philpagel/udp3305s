@@ -22,9 +22,9 @@
 #idString Uni-Trend,UDP3305S
 #name Uni-T UDP3305S
 #handle UDP3305S
-#replaceText CH1_COLOR (51,204,255)
+#replaceText CH1_COLOR (102,255,255)
 #replaceText CH2_COLOR (255,255,102)
-#replaceText CH3_COLOR (204,153,255)
+#replaceText CH3_COLOR (255,102,255)
 #replaceText SER_COLOR (102,255,102)
 #replaceText PAR_COLOR (102,255,102)
 #replaceText CH1_MaxVoltage 33
