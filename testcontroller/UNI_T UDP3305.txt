@@ -5,12 +5,18 @@
 ; there.
 ;
 ; Currently implemented:
-;   * Support socket, LXI and com (serial) connections
+;   * Support socket and LXI connections
 ;   * Recognise both S and S-E models (no differenc ein handling at this point)
 ;   * Channels 1-3 as well as serial and parallel modes
 ;   * Set and activate OCP/OVP
 ;   * Read set and readback values of voltage and current for all channels
 ;   * Channel on/off
+;
+; work in progress:
+;   * connecting via serial (com) port. Have yet to figure out how to set that up
+;
+; not working: connection via USB because the PSU uses USBTMC on the USB port
+
 
 #metadef
 #idString Uni-Trend,UDP3305S
@@ -57,7 +63,7 @@
 #name UNI-T UDP3305
 #handle UDP3305
 #port 5025 LXI com
-
+#baudrate 19200
 
 ; ************************************************************************
 #notes
@@ -333,7 +339,7 @@ V 0 CH3_MaxVoltage
 
 #cmdSetup number OCP_value Ch_3
 :read: OUTPUT:OCP:VALUE? CH3
-:write:iOUTPUT:OCP:VALUE CH3,#
+:write:OUTPUT:OCP:VALUE CH3,#
 :tip: Over current protection
 A 0 CH3_MaxCurrent
 
@@ -393,7 +399,7 @@ V 0 SER_MaxVoltage
 :enable: Output_Mode=="SER"
 : Output_Mode=="SER"
 :read: OUTPUT:OCP:VALUE? SER
-:write:iOUTPUT:OCP:VALUE SER,#
+:write:OUTPUT:OCP:VALUE SER,#
 :tip: Over current protection
 A 0 SER_MaxCurrent
 
