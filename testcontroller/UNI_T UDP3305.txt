@@ -190,36 +190,42 @@ On OFF ON
 ; ********** Channel 1 ********  
 
 #cmdSetup number Volt Ch_1
+:enable: Output_Mode=="NORMAL"
 :read: APPLy? CH1,VOLT
 :readmath: getElement(value,1, ",")
 :write: APPLY Ch1,#V
 V 0 CH1_MaxVoltage
 
 #cmdSetup number Current Ch_1
+:enable: Output_Mode=="NORMAL"
 :read: APPLy? CH1,CURRENT
 :readmath: getElement(value,1, ",")
 :write: APPLY Ch1,#A
 A 0 CH1_MaxCurrent
 
 #cmdSetup number OVP_value Ch_1
+:enable: Output_Mode=="NORMAL"
 :read: OUTPUT:OVP:VALUE?
 :write: OUTPUT:OVP:VALUE CH1,#
 :tip: Over voltage protection
 V 0 CH1_MaxVoltage
 
 #cmdSetup number OCP_value Ch_1
+:enable: Output_Mode=="NORMAL"
 :read: OUTPUT:OCP:VALUE? CH1
 :write: OUTPUT:OCP:VALUE CH1,#
 :tip: Over current protection
 A 0 CH1_MaxCurrent
 
 #cmdSetup checkbox OVP_state Ch_1
+:enable: Output_Mode=="NORMAL"
 :read: OUTPut:OVP:STATe? CH1
 :write: OUTPut:OVP:STATe CH1, #
 :string:
 On OFF ON
 
 #cmdSetup checkbox OCP_state Ch_1
+:enable: Output_Mode=="NORMAL"
 :read: OUTPut:OCP:STATe? CH1
 :write: OUTPut:OCP:STATe CH1, #
 :string:
@@ -228,6 +234,7 @@ On OFF ON
 ; ********** Channel 2 ********  
 
 #cmdSetup number Volt Ch_2
+:enable: Output_Mode=="NORMAL"
 : Output_Mode=="NORMAL"
 :read: APPLy? CH2,VOLT
 :readmath: getElement(value,1, ",")
@@ -235,6 +242,7 @@ On OFF ON
 V 0 CH2_MaxVoltage
 
 #cmdSetup number Current Ch_2
+:enable: Output_Mode=="NORMAL"
 : Output_Mode=="NORMAL"
 :read: APPLy? CH2,CURRENT
 :readmath: getElement(value,1, ",")
@@ -242,6 +250,7 @@ V 0 CH2_MaxVoltage
 A 0 CH2_MaxCurrent
 
 #cmdSetup number OVP_value Ch_2
+:enable: Output_Mode=="NORMAL"
 : Output_Mode=="NORMAL"
 :read: OUTPUT:OVP:VALUE? CH2
 :write: OUTPUT:OVP:VALUE CH2,#
@@ -249,6 +258,7 @@ A 0 CH2_MaxCurrent
 V 0 CH2_MaxVoltage
 
 #cmdSetup number OCP_value Ch_2
+:enable: Output_Mode=="NORMAL"
 : Output_Mode=="NORMAL"
 :read: OUTPUT:OCP:VALUE? CH2
 :write: OUTPUT:OCP:VALUE CH2,#
@@ -256,12 +266,14 @@ V 0 CH2_MaxVoltage
 A 0 CH2_MaxCurrent
 
 #cmdSetup checkbox OVP_state Ch_2
+:enable: Output_Mode=="NORMAL"
 :read: OUTPut:OVP:STATe? CH2
 :write: OUTPut:OVP:STATe CH2, #
 :string:
 On OFF ON
 
 #cmdSetup checkbox OCP_state Ch_2
+:enable: Output_Mode=="NORMAL"
 :read: OUTPut:OCP:STATe? CH2
 :write: OUTPut:OCP:STATe CH2, #
 :string:
@@ -308,6 +320,7 @@ On OFF ON
 ; ********** Channel SER ********  
 
 #cmdSetup number Volt SER
+:enable: Output_Mode=="SER"
 : Output_Mode=="SER"
 :read: APPLy? SER,VOLT
 :readmath: getElement(value,1, ",")
@@ -315,6 +328,7 @@ On OFF ON
 V 0 SER_MaxVoltage
 
 #cmdSetup number Current SER
+:enable: Output_Mode=="SER"
 : Output_Mode=="SER"
 :read: APPLy? SER,CURRENT
 :readmath: getElement(value,1, ",")
@@ -322,6 +336,7 @@ V 0 SER_MaxVoltage
 A 0 SER_MaxCurrent
 
 #cmdSetup number OVP_value SER
+:enable: Output_Mode=="SER"
 : Output_Mode=="SER"
 :read: OUTPUT:OVP:VALUE? SER
 :write: OUTPUT:OVP:VALUE SER,#
@@ -329,6 +344,7 @@ A 0 SER_MaxCurrent
 V 0 SER_MaxVoltage
 
 #cmdSetup number OCP_value SER
+:enable: Output_Mode=="SER"
 : Output_Mode=="SER"
 :read: OUTPUT:OCP:VALUE? SER
 :write:iOUTPUT:OCP:VALUE SER,#
@@ -336,12 +352,14 @@ V 0 SER_MaxVoltage
 A 0 SER_MaxCurrent
 
 #cmdSetup checkbox OVP_state SER
+:enable: Output_Mode=="SER"
 :read: OUTPut:OVP:STATe? SER
 :write: OUTPut:OVP:STATe SER, #
 :string:
 On OFF ON
 
 #cmdSetup checkbox OCP_state SER
+:enable: Output_Mode=="SER"
 :read: OUTPut:OCP:STATe? SER
 :write: OUTPut:OCP:STATe SER, #
 :string:
@@ -350,6 +368,7 @@ On OFF ON
 ; ********** Channel PAR ********  
 
 #cmdSetup number Volt PAR
+:enable: Output_Mode=="PARA"
 : Output_Mode=="PARA"
 :read: APPLy? PARA,VOLT
 :readmath: getElement(value,1, ",")
@@ -357,6 +376,7 @@ On OFF ON
 V 0 PAR_MaxVoltage
 
 #cmdSetup number Current PAR
+:enable: Output_Mode=="PARA"
 : Output_Mode=="PARA"
 :read: APPLy? PARA,CURRENT
 :readmath: getElement(value,1, ",")
@@ -364,6 +384,7 @@ V 0 PAR_MaxVoltage
 A 0 PAR_MaxCurrent
 
 #cmdSetup number OVP_value PAR
+:enable: Output_Mode=="PARA"
 : Output_Mode=="PARA"
 :read: OUTPUT:OVP:VALUE? PARA
 :write: OUTPUT:OVP:VALUE PARA,#
@@ -371,6 +392,7 @@ A 0 PAR_MaxCurrent
 V 0 PAR_MaxVoltage
 
 #cmdSetup number OCP_value PAR
+:enable: Output_Mode=="PARA"
 : Output_Mode=="PARA"
 :read: OUTPUT:OCP:VALUE? PARA
 :write:OUTPUT:OCP:VALUE PARA,#
@@ -378,12 +400,14 @@ V 0 PAR_MaxVoltage
 A 0 PAR_MaxCurrent
 
 #cmdSetup checkbox OVP_state PAR
+:enable: Output_Mode=="PARA"
 :read: OUTPut:OVP:STATe? PARA
 :write: OUTPut:OVP:STATe PARA, #
 :string:
 On OFF ON
 
 #cmdSetup checkbox OCP_state PAR
+:enable: Output_Mode=="PARA"
 :read: OUTPut:OCP:STATe? PARA
 :write: OUTPut:OCP:STATe PARA, #
 :string:
