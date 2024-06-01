@@ -63,8 +63,8 @@
 #notes
 Autodetection does not work for LAN connection. Please enter the IP address manually
 
-#initCmd SYST:LOCK ON
-#finalCmd SYST:LOCK OFF
+;#initCmd SYST:LOCK ON
+;#finalCmd SYST:LOCK OFF
 #prepareSample 
 #askMode SOUR:MODE?
 #askValues MEAS:VOLT? CH1;MEAS:CURR? CH1;MEAS:POWE? CH1;SOUR1:VOLT?;SOUR1:CURR?; MEAS:VOLT? CH2;MEAS:CURR? CH2;MEAS:POWE? CH2;SOUR2:VOLT?;SOUR2:CURR?; MEAS:VOLT? CH3;MEAS:CURR? CH3;MEAS:POWE? CH3;SOUR3:VOLT?;SOUR3:CURR?; MEAS:VOLT? SER;MEAS:CURR? SER;MEAS:POWE? SER;SOUR5:VOLT?;SOUR5:CURR?; MEAS:VOLT? PARA;MEAS:CURR? PARA;MEAS:POWE? PARA;SOUR6:VOLT?;SOUR6:CURR?
@@ -178,13 +178,12 @@ On OFF ON
 On OFF ON
 
 #cmdSetup checkbox Key_lock Output
-:read: SYST:LOCK?
-:write: SYST:LOCK #
+:read: SYST:KLOCK?
+:write: SYST:KLOCK #
 :string:
 :tip: Lock the keys on the instrument
 :updatealloff:
 On OFF ON
-
 
 
 ; ********** Channel 1 ********  
