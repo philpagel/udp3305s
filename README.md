@@ -39,9 +39,9 @@ software. So far, it allows data logging for all three channels as well as in
 serial or parallel mode. Channel setup works but advanced functions such as
 recording, delayer or list mode are not implemented, yet.
 
-![config output](img/output-normal.png)
-![config output parallel](img/output-parallel.png)
-![config channel](img/channel1.png)
+![config output](img/output.png)
+![config channel1](img/channel1.png)
+![config serial](img/serial.png)
 
 This is currently work in progress. Once it is stable and provides all
 essential functionality, I will submit it to the TestController Project.
