@@ -188,6 +188,18 @@ On OFF ON
 
 ; ********** Channel 1 ********  
 
+#cmdSetup radio Volt Ch_1
+:enable: Output_Mode=="NORMAL"
+:read: APPLy? CH1,VOLT
+:readmath: getElement(value,1, ",")
+:write: APPLY Ch1,#V
+:tip: Shortcuts for common voltages
+1.8V 1.8
+3.3V 3.3
+5V 5
+12V 12
+24V 24
+
 #cmdSetup number Volt Ch_1
 :enable: Output_Mode=="NORMAL"
 :read: APPLy? CH1,VOLT
@@ -231,6 +243,18 @@ On OFF ON
 On OFF ON
 
 ; ********** Channel 2 ********  
+
+#cmdSetup radio Volt Ch_2
+:enable: Output_Mode=="NORMAL"
+:read: APPLy? CH2,VOLT
+:readmath: getElement(value,1, ",")
+:write: APPLY Ch2,#V
+:tip: Shortcuts for common voltages
+1.8V 1.8
+3.3V 3.3
+5V 5
+12V 12
+24V 24
 
 #cmdSetup number Volt Ch_2
 :enable: Output_Mode=="NORMAL"
@@ -280,6 +304,15 @@ On OFF ON
 
 ; ********** Channel 3 ********  
 
+#cmdSetup radio Volt Ch_3
+:read: APPLy? CH3,VOLT
+:readmath: getElement(value,1, ",")
+:write: APPLY Ch3,#V
+:tip: Shortcuts for common voltages
+1.8V 1.8
+3.3V 3.3
+5V 5
+
 #cmdSetup number Volt Ch_3
 :read: APPLy? CH3,VOLT
 :readmath: getElement(value,1, ",")
@@ -317,6 +350,20 @@ On OFF ON
 On OFF ON
 
 ; ********** Channel SER ********  
+
+#cmdSetup radio Volt SER
+:enable: Output_Mode=="SER"
+:read: APPLy? SER,VOLT
+:readmath: getElement(value,1, ",")
+:write: APPLY SER,#V
+:tip: Shortcuts for common voltages
+1.8V 1.8
+3.3V 3.3
+5V 5
+12V 12
+24V 24
+30V 30
+60V 60
 
 #cmdSetup number Volt SER
 :enable: Output_Mode=="SER"
@@ -365,6 +412,18 @@ On OFF ON
 On OFF ON
 
 ; ********** Channel PAR ********  
+
+#cmdSetup radio Volt PAR
+:enable: Output_Mode=="PARA"
+:read: APPLy? PARA,VOLT
+:readmath: getElement(value,1, ",")
+:write: APPLY PARA,#V
+:tip: Shortcuts for common voltages
+1.8V 1.8
+3.3V 3.3
+5V 5
+12V 12
+24V 24
 
 #cmdSetup number Volt PAR
 :enable: Output_Mode=="PARA"
