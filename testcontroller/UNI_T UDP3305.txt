@@ -178,8 +178,8 @@ On OFF ON
 On OFF ON
 
 #cmdSetup checkbox Key_lock Output
-:read: SYST:KLOCK?
-:write: SYST:KLOCK #
+:read: SYST:KLOCK:STATE?
+:write: SYST:KLOCK:STATE #
 :string:
 :tip: Lock the keys on the instrument
 :updatealloff:
