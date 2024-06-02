@@ -16,7 +16,7 @@
 ;   * connecting via serial (com) port. Have yet to figure out how to set that up
 ;
 ; not working: connection via USB because the PSU uses USBTMC on the USB port
-
+#author phil phil@techbotch.org
 
 #metadef
 #idString Uni-Trend,UDP3305S
@@ -264,7 +264,6 @@ On OFF ON
 
 #cmdSetup number Volt Ch_2
 :enable: Output_Mode=="NORMAL"
-: Output_Mode=="NORMAL"
 :read: APPLy? CH2,VOLT
 :readmath: getElement(value,1, ",")
 :write: APPLY Ch2,#V
@@ -272,7 +271,6 @@ V 0 CH2_MaxVoltage
 
 #cmdSetup number Current Ch_2
 :enable: Output_Mode=="NORMAL"
-: Output_Mode=="NORMAL"
 :read: APPLy? CH2,CURRENT
 :readmath: getElement(value,1, ",")
 :write: APPLY Ch2,#A
@@ -280,7 +278,6 @@ A 0 CH2_MaxCurrent
 
 #cmdSetup number OVP_value Ch_2
 :enable: Output_Mode=="NORMAL"
-: Output_Mode=="NORMAL"
 :read: OUTPUT:OVP:VALUE? CH2
 :write: OUTPUT:OVP:VALUE CH2,#
 :tip: Over voltage protection
@@ -288,7 +285,6 @@ V 0 CH2_MaxVoltage
 
 #cmdSetup number OCP_value Ch_2
 :enable: Output_Mode=="NORMAL"
-: Output_Mode=="NORMAL"
 :read: OUTPUT:OCP:VALUE? CH2
 :write: OUTPUT:OCP:VALUE CH2,#
 :tip: Over current protection
@@ -373,7 +369,6 @@ On OFF ON
 
 #cmdSetup number Volt SER
 :enable: Output_Mode=="SER"
-: Output_Mode=="SER"
 :read: APPLy? SER,VOLT
 :readmath: getElement(value,1, ",")
 :write: APPLY SER,#V
@@ -381,7 +376,6 @@ V 0 SER_MaxVoltage
 
 #cmdSetup number Current SER
 :enable: Output_Mode=="SER"
-: Output_Mode=="SER"
 :read: APPLy? SER,CURRENT
 :readmath: getElement(value,1, ",")
 :write: APPLY SER,#A
@@ -389,7 +383,6 @@ A 0 SER_MaxCurrent
 
 #cmdSetup number OVP_value SER
 :enable: Output_Mode=="SER"
-: Output_Mode=="SER"
 :read: OUTPUT:OVP:VALUE? SER
 :write: OUTPUT:OVP:VALUE SER,#
 :tip: Over voltage protection
@@ -397,7 +390,6 @@ V 0 SER_MaxVoltage
 
 #cmdSetup number OCP_value SER
 :enable: Output_Mode=="SER"
-: Output_Mode=="SER"
 :read: OUTPUT:OCP:VALUE? SER
 :write:OUTPUT:OCP:VALUE SER,#
 :tip: Over current protection
@@ -433,7 +425,6 @@ On OFF ON
 
 #cmdSetup number Volt PAR
 :enable: Output_Mode=="PARA"
-: Output_Mode=="PARA"
 :read: APPLy? PARA,VOLT
 :readmath: getElement(value,1, ",")
 :write: APPLY PARA,#V
@@ -441,7 +432,6 @@ V 0 PAR_MaxVoltage
 
 #cmdSetup number Current PAR
 :enable: Output_Mode=="PARA"
-: Output_Mode=="PARA"
 :read: APPLy? PARA,CURRENT
 :readmath: getElement(value,1, ",")
 :write: APPLY PARA,#A
@@ -449,7 +439,6 @@ A 0 PAR_MaxCurrent
 
 #cmdSetup number OVP_value PAR
 :enable: Output_Mode=="PARA"
-: Output_Mode=="PARA"
 :read: OUTPUT:OVP:VALUE? PARA
 :write: OUTPUT:OVP:VALUE PARA,#
 :tip: Over voltage protection
@@ -457,7 +446,6 @@ V 0 PAR_MaxVoltage
 
 #cmdSetup number OCP_value PAR
 :enable: Output_Mode=="PARA"
-: Output_Mode=="PARA"
 :read: OUTPUT:OCP:VALUE? PARA
 :write:OUTPUT:OCP:VALUE PARA,#
 :tip: Over current protection
