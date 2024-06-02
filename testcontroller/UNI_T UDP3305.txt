@@ -5,17 +5,13 @@
 ; there.
 ;
 ; Currently implemented:
-;   * Support socket, LXI and RS232 connections
-;   * Recognise both S and S-E models (no differenc ein handling at this point)
+;   * Socket, LXI and RS232 connections (USB uses TMC which is unsupported)
+;   * Works with both S and S-E models (no difference in handling at this point)
 ;   * Channels 1-3 as well as serial and parallel modes
 ;   * Set and activate OCP/OVP
-;   * Read set and readback values of voltage and current for all channels
+;   * Read voltage and current (set and measured) on all channels
 ;   * Channel on/off
-;
-; work in progress:
-;   * connecting via serial (com) port. Have yet to figure out how to set that up
-;
-; not working: connection via USB because the PSU uses USBTMC on the USB port
+
 #author phil phil@techbotch.org
 
 #metadef
@@ -67,7 +63,11 @@
 
 ; ************************************************************************
 #notes
-Autodetection does not work for LAN connection. Please enter the IP address manually
+* Autodetection does not work for LAN connection. Please enter the IP address
+  manually.
+* RS232 is set to 9600 baud - make sure the instrument is set accordingly or
+  change config.
+
 
 #initCmd SYST:LOCK ON
 #finalCmd SYST:LOCK OFF;OUTPUT:STATE ALL,OFF
@@ -125,13 +125,10 @@ Autodetection does not work for LAN connection. Please enter the IP address manu
 ; *******************************
 
 #cmdSetup radio Output_Mode 
-:read: SOURce:Mode?;
-:readFormat: 
-:write: SOURCE:Mode # 
+:read: SOURce:Mode?
 :string:
-:updatealloff:
+:write: SOURCE:Mode # 
 :updatedelayed: 0.5
-:update: Output_Mode,Output_Ch1,Output_Ch2,Output_Ch3,Output_Serial,Output_Parallel,ch1_selector,ch2_selector,ch3_selector,ser_selector,par_selector
 Normal NORMAL
 Serial SER
 Parallel PARA
@@ -456,54 +453,6 @@ On OFF ON
 :write: OUTPut:OCP:STATe PARA, #
 :string:
 On OFF ON
-
-
-; ********** control visibility setup ********  
-;#cmdSetup selector Output_selector Output
-;Output_Mode
-;:updatealloff:
-;:updatedelayed: 0.5
-;NORMAL Output.Output_Ch1 Output.Output_Ch2 Output.Output_Ch3
-;SER Output.SER Output.Output_Ch3
-;PARA Output.Parallel
-
-;; ********** control visibility setup ********  
-;#cmdSetup selector ch1_selector Ch_1
-;Output_Mode
-;:updatealloff:
-;:updatedelayed: 0.5
-;NORMAL Ch_1.
-;SER
-;PARA
-;#cmdSetup selector ch2_selector Ch_2
-;Output_Mode
-;:updatealloff:
-;:updatedelayed: 0.5
-;NORMAL Ch_2.
-;SER
-;PARA
-;#cmdSetup selector ch3_selector Ch_3
-;Output_Mode
-;:updatealloff:
-;:updatedelayed: 0.5
-;NORMAL Ch_3. 
-;SER Ch_3.
-;PARA Ch_3.
-;#cmdSetup selector ser_selector SER
-;Output_Mode
-;:updatealloff:
-;:updatedelayed: 0.5
-;NORMAL
-;SER SER.
-;PARA
-;#cmdSetup selector par_selector PAR
-;Output_Mode
-;:updatealloff:
-;:updatedelayed: 0.5
-;NORMAL
-;SER
-;PARA PAR.
-
 
 ; ********** Color setup ********  
 
