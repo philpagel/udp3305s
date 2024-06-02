@@ -11,6 +11,9 @@
 ;   * Set and activate OCP/OVP
 ;   * Read voltage and current (set and measured) on all channels
 ;   * Channel on/off
+;
+; So far, no generic interface has been set up. I'll get to that once
+; the rest appears stable
 
 #author phil phil@techbotch.org
 
