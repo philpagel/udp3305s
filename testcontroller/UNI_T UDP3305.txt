@@ -11,9 +11,6 @@
 ;   * Set and activate OCP/OVP
 ;   * Read voltage and current (set and measured) on all channels
 ;   * Channel on/off
-;
-; So far, no generic interface has been set up. I'll get to that once
-; the rest appears stable
 
 #author phil phil@techbotch.org
 
@@ -39,8 +36,8 @@
 
 #metadef
 #idString Uni-Trend,UDP3305S-E
-#name Uni-T UDP3305S-E
-#handle UDP3305S-E
+#name Uni-T UDP3305SE
+#handle UDP3305SE
 #replaceText CH1_COLOR (51,204,255)
 #replaceText CH2_COLOR (255,255,102)
 #replaceText CH3_COLOR (204,153,255)
@@ -106,21 +103,6 @@
 #value PARA_VoltageSet V D3
 #value PARA_CurrentSet A D3
 
-
-; ********** Interface definitions  ********  
-
-;#interfaceType PS PS:2 PS:3
-;
-;#interface setVoltage APPLY (channel),(value)V
-;#interface setCurrent APPLY (channel),(value)A
-;#interface setOn OUTPUT (channel),(value)
-;#interface getVoltage MEASURE:VOLT? (channel)
-;:readFormat: f
-;#interface getCurrent MEASURE:CURRENT? (channel)
-;:readFormat: f
-;#interface getOn OUTPUT:STATE? (channel)
-;#interface readVoltage 0
-;#interface readCurrent 1
 
 
 ; *******************************
@@ -475,4 +457,30 @@ SER_COLOR
 PAR_COLOR
 :bgcolor: PAR_COLOR
 
+
+; ******************** generic interface ********************
+; We currently only defne the 3 normal channels
+; because I have yet to figure out how to translage a channel number
+; to a string (4 -> "SER", 5 -> "PARA")
+; ch1, ch2, ch3, ser, para
+; ch1 and ch2 are avainaleb in normal mode, ser and para only in
+; their respective modes
+
+#interfaceType PS:1 PS:2 PS:3
+
+#interface setVoltage APPLY CH(channel),(value)V
+#interface setCurrent APPLY CH(channel),(value)A
+
+#interface getVoltage APPLY? CH(channel),VOLT
+:readmath: getElement(value,1, ",")
+#interface getCurrent APPLY? CH(channel),VOLT
+:readmath: getElement(value,1, ",")
+
+#interface setOn OUTPUT:STATE CH(channel),(value)
+#interface getOn OUTPUT:STATE? CH(channel)
+:string:
+
+; ch1, ch2, ch3
+#interface readVoltage 0 5 10
+#interface readCurrent 1 6 11
 
