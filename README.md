@@ -9,7 +9,7 @@ Currently, there are two items in this repository:
 # UDP3305S.py
 
 The python class comes wiht its own documentation, see
-[UDP3305S.md](python/UDP3305smd) for details.
+[UDP3305S.md](python/UDP3305S.md) for details.
 
 # rec2csv
 
