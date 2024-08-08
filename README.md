@@ -2,8 +2,14 @@
 
 Currently, there are two items in this repository:
 
+* 'UDP3305s.py' is a python class for remote controlling the power supply
 * `rec2csv` is a command line tool for converting `*.rec` files to csv format
 * a TestController config file for these power supplies
+
+# UDP3305S.py
+
+The python class comes wiht its own documentation, see
+[UDP3305S.md](python/UDP3305smd) for details.
 
 # rec2csv
 
