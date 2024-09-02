@@ -1,6 +1,9 @@
 ; Configuration for UNI-T UDP3305S and UDP3305S-E lab power supplies
 ;
-; Latest version is available on gitHub: https://github.com/philpagel/udp3305s
+; Latest version is available on gitHub:
+;
+; https://github.com/philpagel/udp3305s
+;
 ; If you find a problem or have an idea for improvement, please open an issue
 ; there.
 ;
@@ -11,6 +14,9 @@
 ;   * Set and activate OCP/OVP
 ;   * Read voltage and current (set and measured) on all channels
 ;   * Channel on/off
+;
+; Known issues:
+;   * generic interface does not support on/off for SER and PARA combined channels
 
 #author phil phil@techbotch.org
 
@@ -458,28 +464,38 @@ PAR_COLOR
 
 
 ; ******************** generic interface ********************
-; We currently only defne the 3 normal channels
-; because I have yet to figure out how to translage a channel number
-; to a string (4 -> "SER", 5 -> "PARA")
-; ch1, ch2, ch3, ser, para
-; ch1 and ch2 are avainaleb in normal mode, ser and para only in
-; their respective modes
+;                               ________ SER
+;                              |     ___ PARA
+;                              |    |
+#interfaceType PS PS:2 PS:3 PS:4 PS:5
 
-#interfaceType PS:1 PS:2 PS:3
+#interface setVoltage SOURCE CH(channel):VOLT (value)
+#interface getVoltage SOURCE CH(channel):VOLT?
 
-#interface setVoltage APPLY CH(channel),(value)V
-#interface setCurrent APPLY CH(channel),(value)A
+#interface setCurrent SOURCE CH(channel):CURR (value)
+#interface getCurrent SOURCE CH(channel):CURR?
 
-#interface getVoltage APPLY? CH(channel),VOLT
-:readmath: getElement(value,1, ",")
-#interface getCurrent APPLY? CH(channel),VOLT
-:readmath: getElement(value,1, ",")
+#interface setOVP OUTPUT:OVP:VALUE CH(channel), (value) 
+#interface getOVP OUTPUT:OVP:VALUE? CH(channel)
 
-#interface setOn OUTPUT:STATE CH(channel),(value)
+#interface setOCP OUTPUT:OCP:VALUE CH(channel), (value) 
+#interface getOCP OUTPUT:OCP:VALUE? CH(channel)
+
+
+; ch1, ch2, ch3, SER, PARA
+#interface readVoltage 0 5 10 15 20
+#interface readCurrent 1 6 11 16 21
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; XXX: this doesn only work for channels 1-3 but not SER or PARA:
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+#interface setOn OUTPUT:STATE CH(channel), (value)
 #interface getOn OUTPUT:STATE? CH(channel)
 :string:
 
-; ch1, ch2, ch3
-#interface readVoltage 0 5 10
-#interface readCurrent 1 6 11
+; XXX: does not work at all
+;#interface setOn OUTPUT:STATE (getElement("CH1 CH1 CH2 CH3 SER PARA",channel," ")), (value)
+;#interface getOn OUTPUT:STATE? (getElement("CH1 CH1 CH2 CH3 SER PARA",channel," "))
+;:string:
 
