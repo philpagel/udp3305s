@@ -467,34 +467,43 @@ PAR_COLOR
 ;                               ________ SER
 ;                              |     ___ PARA
 ;                              |    |
-#interfaceType PS PS:2 PS:3 PS:4 PS:5
+#interfaceType PS:1 PS:2 PS:3 PS:4 PS:5
+
+#interface setMode SOURCE:MODE (value)
+#interface getMode SOURCE:MODE?
+:string:
 
 #interface setVoltage SOURCE CH(channel):VOLT (value)
 #interface getVoltage SOURCE CH(channel):VOLT?
+#interface readVoltage 0 5 10 15 20
 
 #interface setCurrent SOURCE CH(channel):CURR (value)
 #interface getCurrent SOURCE CH(channel):CURR?
+#interface readCurrent 1 6 11 16 21
+
+#interface readPower 2 7 12 17 22
 
 #interface setOVP OUTPUT:OVP:VALUE CH(channel), (value) 
 #interface getOVP OUTPUT:OVP:VALUE? CH(channel)
+#interface setOVPstate OUTPUT:OVP:STATE CH(channel), (value)
+#interface getOVPstate OUTPUT:OVP:STATE? CH(channel)
+:string:
 
 #interface setOCP OUTPUT:OCP:VALUE CH(channel), (value) 
 #interface getOCP OUTPUT:OCP:VALUE? CH(channel)
+#interface setOCPstate OUTPUT:OCP:STATE CH(channel), (value)
+#interface getOCPstate OUTPUT:OCP:STATE? CH(channel)
+:string:
 
+#interface getCVCC OUTPUT:CVCC? CH(channel)
+:string:
 
-; ch1, ch2, ch3, SER, PARA
-#interface readVoltage 0 5 10 15 20
-#interface readCurrent 1 6 11 16 21
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; XXX: this doesn only work for channels 1-3 but not SER or PARA:
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
+; XXX: this works for channels 1-3 but not SER or PARA:
 #interface setOn OUTPUT:STATE CH(channel), (value)
 #interface getOn OUTPUT:STATE? CH(channel)
 :string:
 
-; XXX: does not work at all
+; XXX: this *should* work for all channels but doesn't. :-(
 ;#interface setOn OUTPUT:STATE (getElement("CH1 CH1 CH2 CH3 SER PARA",channel," ")), (value)
 ;#interface getOn OUTPUT:STATE? (getElement("CH1 CH1 CH2 CH3 SER PARA",channel," "))
 ;:string:
