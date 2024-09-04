@@ -499,12 +499,12 @@ PAR_COLOR
 :string:
 
 ; XXX: this works for channels 1-3 but not SER or PARA:
-#interface setOn OUTPUT:STATE CH(channel), (value)
-#interface getOn OUTPUT:STATE? CH(channel)
-:string:
+;#interface setOn OUTPUT:STATE CH(channel), (value)
+;#interface getOn OUTPUT:STATE? CH(channel)
+;:string:
 
 ; XXX: this *should* work for all channels but doesn't. :-(
-;#interface setOn OUTPUT:STATE (getElement("CH1 CH1 CH2 CH3 SER PARA",channel," ")), (value)
-;#interface getOn OUTPUT:STATE? (getElement("CH1 CH1 CH2 CH3 SER PARA",channel," "))
-;:string:
+#interface setOn OUTPUT:STATE (getElement("CH1 CH1 CH2 CH3 SER PARA", (channel))), (value)
+#interface getOn OUTPUT:STATE? (getElement("CH1 CH1 CH2 CH3 SER PARA", (channel)))
+:string:
 
