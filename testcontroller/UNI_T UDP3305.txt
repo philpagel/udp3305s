@@ -1,22 +1,17 @@
 ; Configuration for UNI-T UDP3305S and UDP3305S-E lab power supplies
 ;
-; Latest version is available on gitHub:
+; The source for this config file is maintained on GitHub:
 ;
 ; https://github.com/philpagel/udp3305s
 ;
 ; If you find a problem or have an idea for improvement, please open an issue
 ; there.
 ;
-; Currently implemented:
-;   * Socket, LXI and RS232 connections (USB uses TMC which is unsupported)
-;   * Works with both S and S-E models (no difference in handling at this point)
-;   * Channels 1-3 as well as serial and parallel modes
-;   * Set and activate OCP/OVP
-;   * Read voltage and current (set and measured) on all channels
-;   * Channel on/off
-;
-; Known issues:
-;   * generic interface does not support on/off for SER and PARA combined channels
+; Status:
+;   this should be feature complete with respect to direct control of all channels.
+;   I did not implement list or delay modes because I don't see much use for these if
+;   the device is controlled form a script, anyway.
+
 
 #author phil phil@techbotch.org
 
@@ -498,13 +493,8 @@ PAR_COLOR
 #interface getCVCC OUTPUT:CVCC? CH(channel)
 :string:
 
-; XXX: this works for channels 1-3 but not SER or PARA:
-;#interface setOn OUTPUT:STATE CH(channel), (value)
-;#interface getOn OUTPUT:STATE? CH(channel)
-;:string:
-
-; XXX: this *should* work for all channels but doesn't. :-(
-#interface setOn OUTPUT:STATE (getElement("CH1 CH1 CH2 CH3 SER PARA", (channel))), (value)
-#interface getOn OUTPUT:STATE? (getElement("CH1 CH1 CH2 CH3 SER PARA", (channel)))
+#interface setOn OUTPUT:STATE (getElement("CH1 CH1 CH2 CH3 SER PARA", channel)), (value)
+#interface getOn OUTPUT:STATE? (getElement("CH1 CH1 CH2 CH3 SER PARA", channel))
 :string:
+
 

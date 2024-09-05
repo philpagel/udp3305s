@@ -1,6 +1,6 @@
 # Tools for UDP3305S / UDP3305S-E lab power supplies
 
-Currently, there are two items in this repository:
+Currently, there are the following items in this repository:
 
 * 'UDP3305s.py' is a python class for remote controlling the power supply
 * `rec2csv` is a command line tool for converting `*.rec` files to csv format
@@ -48,9 +48,6 @@ recording, delayer or list mode are not implemented, yet.
 ![config output](img/output.png)
 ![config channel1](img/channel1.png)
 ![config serial](img/serial.png)
-
-This is currently work in progress. Once it is stable and provides all
-essential functionality, I will submit it to the TestController Project.
 
 Thanks to Wolfram Bahmann for his input and testing the config on a UDP3305S-E.
 
