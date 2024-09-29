@@ -2,14 +2,8 @@
 
 Currently, there are the following items in this repository:
 
-* 'UDP3305s.py' is a python class for remote controlling the power supply
 * `rec2csv` is a command line tool for converting `*.rec` files to csv format
 * a TestController config file for these power supplies
-
-# UDP3305S.py
-
-The python class comes wiht its own documentation, see
-[UDP3305S.md](python/UDP3305S.md) for details.
 
 # rec2csv
 
@@ -43,11 +37,16 @@ The file under `testcontroller/` is a configuration file for the popular
 [TestController](https://lygte-info.dk/project/TestControllerIntro%20UK.html)
 software. So far, it allows data logging for all three channels as well as in
 serial or parallel mode. Channel setup works but advanced functions such as
-recording, delayer or list mode are not implemented, yet.
+recording, delayer or list mode are not implemented – I don't think they are
+all that usefull if you are cpntrolling the device remotely.
 
 ![config output](img/output.png)
 ![config channel1](img/channel1.png)
 ![config serial](img/serial.png)
+
+The config file has been submitted to the Testcontroller project and should be
+included in the next release. So you don't have to download it form here.
+However, I'll be happy to get bug reports or feature requests here.
 
 Thanks to Wolfram Bahmann for his input and testing the config on a UDP3305S-E.
 
