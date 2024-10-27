@@ -44,13 +44,14 @@ all that usefull if you are cpntrolling the device remotely.
 ![config channel1](img/channel1.png)
 ![config serial](img/serial.png)
 
-The config file has been submitted to the Testcontroller project and should be
-included in the next release. So you don't have to download it form here.
-However, I'll be happy to get bug reports or feature requests here.
+The config file has been submitted to the Testcontroller project and is included
+since release V2.49. So you don't have to download it form here.
+Future updates will be submitted aswell.
 
-Thanks to Wolfram Bahmann for his input and testing the config on a UDP3305S-E.
+# Contributions
 
-# Contributing
+Thanks to Wolfram Bahmann for his input and testing the testcontroller config
+on a UDP3305S-E.
 
 If you find an error, miss a feature or have figured out a piece of data that I
 have missed, please open an issue and let me know. Please don't submit
