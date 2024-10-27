@@ -5,6 +5,9 @@ Currently, there are the following items in this repository:
 * `rec2csv` is a command line tool for converting `*.rec` files to csv format
 * a TestController config file for these power supplies
 
+I also have a python class for remote controlling the PSU – that one lives in a
+separate repostitory ([UDP3305S.py](https://github.com/philpagel/UDP3305S.py)).
+
 # rec2csv
 
 Convert `*.rec` files created by a UNI-T UDP3305S or UPD3305S-E lab power supply to
